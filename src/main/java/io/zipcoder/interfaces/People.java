@@ -4,10 +4,15 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class People implements Iterable{
-    private List<Person> personList;
+public abstract class People<E extends Person> implements Iterable{
 
-    public People(List<Person> personList) {
+    private List<E> personList;
+
+    public List<E> getPersonList() {
+        return personList;
+    }
+
+    public People(List<E> personList) {
         this.personList = personList;
     }
 
@@ -15,12 +20,12 @@ public class People implements Iterable{
         this.personList = new LinkedList<>();
     }
 
-    public void add(Person person){
+    public void add(E person){
         personList.add(person);
     }
 
-    public Person findById(Long id){
-        for(Person person:this.personList) if(person.getId()==id)return person;
+    public E findById(Long id){
+        for(E person:this.personList) if(person.getId()==id)return person;
         return null;
     }
 
@@ -45,9 +50,7 @@ public class People implements Iterable{
         return personList.size();
     }
 
-    public Person[] toArray(){
-        return personList.toArray(new Person[0]);
-    }
+    public abstract E[] toArray();
 
     public Iterator iterator(){
         return personList.iterator();

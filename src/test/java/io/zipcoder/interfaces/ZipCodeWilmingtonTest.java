@@ -19,4 +19,15 @@ public class ZipCodeWilmingtonTest {
         Double expected = 1.5;
         Double actual = map.get(l);
     }
+
+    @Test
+    public void hostLectureEnumEdition() {
+        ZipCodeWilmington zcw = ZipCodeWilmington.getInstance();
+        zcw.hostLecture(Educator.FROILAN,43.5);
+        Map<Student,Double> map = zcw.getStudyMap();
+        Random rand = new Random();
+        Long l = (long)(rand.nextInt(29)+1);
+        Double expected = 1.5;
+        Double actual = map.get(l);
+    }
 }
